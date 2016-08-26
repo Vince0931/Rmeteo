@@ -1,0 +1,90 @@
+
+
+# SP
+install.packages("sp")
+
+
+# GDAL
+sudo apt-get install aptitude
+sudo aptitude install libgdal-dev
+sudo aptitude install libproj-dev
+install.packages("rgdal")
+
+
+#MONITIRONG 
+apt-get instal npm 
+https://github.com/Unitech/pm2
+
+
+
+
+# NETCDF4
+
+#install.packages("ncdf4")
+apt-get install r-cran-ncdf4
+
+http://installion.co.uk/ubuntu/vivid/universe/r/r-cran-ncdf4/install/index.html
+
+
+export PATH=$PATH:/usr/local/lib/wgrib2
+
+
+
+system("cd /srv/shiny-server/sample-apps/rmeteo/", wait=TRUE)
+system("mkdir /srv/shiny-server/sample-apps/rmeteo/grib/2016-04-11", wait=TRUE)
+system2("mkdir", "grib/2016-04-12", wait=TRUE)
+
+system2("curl", "'http://dcpc-nwp.meteo.fr/services/PS_GetCache_DCPCPreviNum?token=__5yLVTdr-sGeHoPitnFc7TZ6MhBcJxuSsoZp6y0leVHU__&model=AROME&grid=0.025&package=SP1&time=07H12H&referencetime=2016-04-18T03%3A00%3A00Z' -o grib/2016-04-18/AROME_SP1_2016-04-18_07H12H.grib2", wait = TRUE)
+
+system("export PATH=$PATH:/usr/local/lib/wgrib2 && wgrib2 /opt/shiny-server/samples/sample-apps/rmeteo/grib/2016-04-13/AROME_SP1_2016-04-13_00H06H.grib2 -netcdf /opt/shiny-server/samples/sample-apps/rmeteo/netcdf/2016-04-13/AROME_SP1_2016-04-13_00H06H.nc")
+
+curl 'http://dcpc-nwp.meteo.fr/services/PS_GetCache_DCPCPreviNum?token=__5yLVTdr-sGeHoPitnFc7TZ6MhBcJxuSsoZp6y0leVHU__&model=AROME&grid=0.025&package=IP3&time=00H06H&referencetime=2016-04-18T03%3A00%3A00Z' -o grib/2016-04-18/AROME_IP3_2016-04-18_00H06H.grib2
+
+
+
+
+wgrib2 grib/2016-04-18/AROME_IP3_2016-04-18_07H12H.grib2 -netcdf netcdf/2016-04-18/AROME_IP3_2016-04-18_07H12H.nc
+
+wgrib2 grib/2016-04-18/AROME_SP1_2016-04-18_07H12H.grib2 -netcdf netcdf/2016-04-18/AROME_SP1_2016-04-18_07H12H.nc
+
+wgrib2 grib/2016-04-18/AROME_SP1_2016-04-18_07H12H.grib2 -wind_dir wind_dir/2016-04-18/AROME_SP1_2016-04-18_07H12H.grb -match "(UGRD_10maboveground|VGRD_10maboveground)"
+
+-match "(UGRD_10maboveground|VGRD_10maboveground)"
+
+
+
+
+
+ATan2(-v, -u) * (180 / 3.14159265)
+
+Package ‘RadioSonde’
+
+
+
+
+# TODO List
+
+[ ] ajouter les wind barb sur le layer du vend
+[ ] ajouter la vitesse verticale (VV2) IP3
+[ ] ajouter l'altitude de la couche convective 
+[ ] ajouter les contours sur le layer de la pression
+[ ] revoir l'echelle des couleurs pour la température
+[ ] revoir l'echelle des couleurs pour la pression
+[ ] revoir l'echelle des couleurs pour la humidité
+[ ] revoir l'echelle des couleurs pour la neige
+[ ] revoir l'echelle des couleurs pour la vent
+[ ] revoir l'echelle des couleurs pour la geopoteltiel
+[ ] ajouter le layer de la couverture nuageuse
+[ ] ajouter les layers par niveaux iso
+[ ] ajouter un graphique au click sur la carte -> graphique par niveau iso
+[ ] bloquer le scrip d'import 
+[ ] 
+[ ] 
+[ ] 
+[ ] 
+[ ] 
+
+
+
+
+
